@@ -39,11 +39,32 @@ public class UIHandler
         Element a = ElementHandlers.SearchByName(nameA);
         Element b = ElementHandlers.SearchByName(nameB);
 
-        input = GameObject.Find("Name").GetComponent<InputField>();
+        input = GameObject.Find("Panel/Name").GetComponent<InputField>();
 
         Element c = ElementHandlers.CombineTwoElements(a, b, input.text);
 
         ElementHandlers.AddToElements(c);
 
     } 
+
+    public static List<string> GetInfos(Element element)
+    {
+        List<string> informations = new List<string>();
+
+        string proportions = "Water : " + element.waterPortion + "%\n Earth : " + element.earthPortion + "% \n Fire : " + element.firePortion + "%\n Air : " + element.airPortion + "%";
+        informations.Add(proportions);
+
+        string properties = "Protection : " + element.protection + "\n Magicness : " + element.magic + " \n Solidity : " + element.solidity + "\n Sharpness : " + element.sharpness;
+        informations.Add(properties);
+
+        string attributes = "";
+        if (element.hasLife) { attributes += "Alive, "; }
+        if (element.isFireable) { attributes += "Burnable, "; }
+        if (element.isLiquid) { attributes += "Liquid, "; }
+        if (element.isSolid) { attributes += "Solid, "; }
+        if (element.isGas) { attributes += "Gas, "; }
+        informations.Add(attributes);
+
+        return informations;
+    }
 }

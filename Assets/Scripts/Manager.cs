@@ -7,14 +7,20 @@ public class Manager : MonoBehaviour
     public List<Element> builtInElements;
     // Start is called before the first frame update
 
-    void Start()
+    void Awake()
     {
+        ElementHandlers.Init();
         foreach (Element element in builtInElements)
         {
             ElementHandlers.AddToElements(element);
         }
 
         UIHandler.UpdateDropdowns();
+
+    }
+    void Start()
+    {
+        
     }
     public void CreateElement()
     {
